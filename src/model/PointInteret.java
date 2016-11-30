@@ -5,4 +5,13 @@ package model;
  */
 public class PointInteret
 {
+    protected double Lattitude;
+    protected double Longitude;
+    protected int departement;
+    protected String commune;
+    protected int codepostal;
+    protected String description;
+    protected String INSEE;
+    public PointInteret(){}
+
 }
