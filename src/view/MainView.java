@@ -15,7 +15,6 @@ public class MainView extends JFrame{
     private JCheckBox checkBox,checkBox1;
     private JCheckBox[] checkBoxes;
     private String[] nameCheckBoxes;
-    private int i = 0;
 
 
     public MainView(){
@@ -24,7 +23,7 @@ public class MainView extends JFrame{
         pack();
         setResizable(false);
         setTitle("Map");
-        setSize(1000, 700);
+        setSize(1366, 768);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
     //Initie les attributs dans les panels
@@ -32,6 +31,7 @@ public class MainView extends JFrame{
         //TODO : Rechercher via le CSV au lieu des pictogrammes
         File dir = new File("pictogrammes");
         File[] directoryListing = dir.listFiles();
+        int i = 0;
         if (directoryListing != null) {
             nameCheckBoxes = new String[directoryListing.length];
             for (File child : directoryListing) {
@@ -78,4 +78,93 @@ public class MainView extends JFrame{
         setContentPane(panFond);
     }
 
+    public String[] getNameCheckBoxes()
+    {
+        return nameCheckBoxes;
+    }
+
+    public void setNameCheckBoxes(String[] nameCheckBoxes)
+    {
+        this.nameCheckBoxes = nameCheckBoxes;
+    }
+
+    public JPanel getPanPrincipal()
+    {
+        return panPrincipal;
+    }
+
+    public void setPanPrincipal(JPanel panPrincipal)
+    {
+        this.panPrincipal = panPrincipal;
+    }
+
+    public JPanel getCarte()
+    {
+        return carte;
+    }
+
+    public void setCarte(JPanel carte)
+    {
+        this.carte = carte;
+    }
+
+    public JPanel getPanCheckBox()
+    {
+        return panCheckBox;
+    }
+
+    public void setPanCheckBox(JPanel panCheckBox)
+    {
+        this.panCheckBox = panCheckBox;
+    }
+
+    public JPanel getPanFond()
+    {
+        return panFond;
+    }
+
+    public void setPanFond(JPanel panFond)
+    {
+        this.panFond = panFond;
+    }
+
+    public JPanel getPanInformations()
+    {
+        return panInformations;
+    }
+
+    public void setPanInformations(JPanel panInformations)
+    {
+        this.panInformations = panInformations;
+    }
+
+    public JCheckBox getCheckBox()
+    {
+        return checkBox;
+    }
+
+    public void setCheckBox(JCheckBox checkBox)
+    {
+        this.checkBox = checkBox;
+    }
+
+    public JCheckBox getCheckBox1()
+    {
+        return checkBox1;
+    }
+
+    public void setCheckBox1(JCheckBox checkBox1)
+    {
+        this.checkBox1 = checkBox1;
+    }
+
+    public JCheckBox[] getCheckBoxes()
+    {
+        return checkBoxes;
+    }
+
+    public void setCheckBoxes(JCheckBox[] checkBoxes)
+    {
+        this.checkBoxes = checkBoxes;
+    }
 }
