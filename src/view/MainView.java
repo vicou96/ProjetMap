@@ -13,6 +13,13 @@ public class MainView extends JFrame{
     public MainView(){
         initAttribut();
         creerFenetreMain();
+        pack();
+        setResizable(false);
+        setTitle("Map");
+        setSize(800, 600);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        checkBox.setVisible(true);
+        panPrincipal.add(checkBox);
     }
 
     public void initAttribut(){
