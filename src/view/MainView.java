@@ -3,9 +3,12 @@ package view;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.Iterator;
+import java.util.Set;
 
 /**
  * Created by Victor on 30/11/2016.
@@ -15,11 +18,11 @@ public class MainView extends JFrame{
     private JCheckBox checkBox,checkBox1;
     private JCheckBox[] checkBoxes;
     private String[] nameCheckBoxes;
+    private BufferedImage imageFR;
 
 
     public MainView(){
         creerFenetreMain();
-        initAttribut();
         pack();
         setResizable(false);
         setTitle("Map");
@@ -27,19 +30,14 @@ public class MainView extends JFrame{
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
     //Initie les attributs dans les panels
-    public void initAttribut(){
-        //TODO : Rechercher via le CSV au lieu des pictogrammes
-        File dir = new File("pictogrammes");
-        File[] directoryListing = dir.listFiles();
-        int i = 0;
-        if (directoryListing != null) {
-            nameCheckBoxes = new String[directoryListing.length];
-            for (File child : directoryListing) {
-                nameCheckBoxes[i] = child.getName().substring(0, child.getName().lastIndexOf('.'));
-                i++;
-            }
-        } else {
-            System.out.println("Erreur loading fichier");
+    public void initAttribut(Set<String> listNames){
+        Iterator iterator=listNames.iterator();
+        nameCheckBoxes = new String[listNames.size()];
+
+        int i=0;
+        for (String str:listNames) {
+            nameCheckBoxes[i] = str;
+            i++;
         }
         checkBoxes = new JCheckBox[nameCheckBoxes.length];
         for (int j = 0; j < nameCheckBoxes.length; j++)
@@ -52,17 +50,16 @@ public class MainView extends JFrame{
     //Creer les panels dans la fenetre
     public void creerFenetreMain(){
         try {
-            carte = new JPanel() {
-                BufferedImage image = ImageIO.read(new File("Franche-Comte.jpg"));
-
-                public void paintComponent(Graphics g) {
-                    super.paintComponent(g);
-                    g.drawImage(image, 0, 0, 381, 516, this);
-                }
-            };
+            imageFR= ImageIO.read(new File("Franche-Comte.jpg"));
         } catch (IOException e) {
             e.printStackTrace();
         }
+            carte = new JPanel() {
+                public void paintComponent(Graphics g) {
+                    super.paintComponent(g);
+                    g.drawImage(imageFR, 0, 0, 381, 516, this);
+                }
+            };
         panCheckBox = new JPanel();
         panCheckBox.setLayout(new GridLayout(10,3));
         panPrincipal = new JPanel();
@@ -167,4 +164,11 @@ public class MainView extends JFrame{
     {
         this.checkBoxes = checkBoxes;
     }
+    public BufferedImage getImageFR() {
+        return imageFR;
+    }
+    public void setActionListener(ActionListener listener, JCheckBox check){
+        check.addActionListener(listener);
+    }
+
 }

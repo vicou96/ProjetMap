@@ -1,3 +1,5 @@
+import controller.MainController;
+import model.MainModel;
 import view.MainView;
 
 /**
@@ -7,7 +9,9 @@ public class Map
 {
     public static void main(String[] args)
     {
-        MainView main = new MainView();
-        main.setVisible(true);
+        MainView view = new MainView();
+        MainModel model = new MainModel();
+        MainController controller= new MainController(model,view);
+        view.setVisible(true);
     }
 }
