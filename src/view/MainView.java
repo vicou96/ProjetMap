@@ -7,6 +7,7 @@ import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Set;
 
@@ -18,7 +19,10 @@ public class MainView extends JFrame{
     private JCheckBox checkBox,checkBox1;
     private JCheckBox[] checkBoxes;
     private String[] nameCheckBoxes;
+
     private BufferedImage imageFR;
+
+    private ArrayList<JButton> buttons;
 
 
     public MainView(){
@@ -31,6 +35,7 @@ public class MainView extends JFrame{
     }
     //Initie les attributs dans les panels
     public void initAttribut(Set<String> listNames){
+        buttons=new ArrayList<>();
         Iterator iterator=listNames.iterator();
         nameCheckBoxes = new String[listNames.size()];
 
@@ -54,12 +59,12 @@ public class MainView extends JFrame{
         } catch (IOException e) {
             e.printStackTrace();
         }
-            carte = new JPanel() {
-                public void paintComponent(Graphics g) {
-                    super.paintComponent(g);
-                    g.drawImage(imageFR, 0, 0, 381, 516, this);
-                }
-            };
+        carte = new JPanel() {
+            public void paintComponent(Graphics g) {
+                super.paintComponent(g);
+                g.drawImage(imageFR, 0, 0, 381, 516, this);
+            }
+        };
         panCheckBox = new JPanel();
         panCheckBox.setLayout(new GridLayout(10,3));
         panPrincipal = new JPanel();
@@ -169,6 +174,9 @@ public class MainView extends JFrame{
     }
     public void setActionListener(ActionListener listener, JCheckBox check){
         check.addActionListener(listener);
+    }
+    public ArrayList<JButton> getButtons() {
+        return buttons;
     }
 
 }
