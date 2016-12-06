@@ -7,9 +7,7 @@ public class PointInteret
 {
     protected double Lattitude;
     protected double Longitude;
-    protected int departement;
     protected String commune;
-    protected int codepostal;
     protected String description;
     protected String INSEE;
     public PointInteret(){}
@@ -22,16 +20,9 @@ public class PointInteret
         return Longitude;
     }
 
-    public int getDepartement() {
-        return departement;
-    }
 
     public String getCommune() {
         return commune;
-    }
-
-    public int getCodepostal() {
-        return codepostal;
     }
 
     public String getDescription() {

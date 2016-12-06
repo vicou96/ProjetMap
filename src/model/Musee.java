@@ -11,7 +11,7 @@ public class Musee extends PointInteret {
     private String courriel;
     private String siteinternet;
     private String facebook;
-    private String reference;
+    private int codepostal;
 
     public Musee(String[] data) {
         this.nom = data[0];
@@ -28,5 +28,35 @@ public class Musee extends PointInteret {
         this.facebook = data[11];
         this.description = data[12];
     }
+    public int getCodepostal() {
+        return codepostal;
+    }
 
+    public String getNom() {
+        return nom;
+    }
+
+    public String getAdresse() {
+        return adresse;
+    }
+
+    public String getAcces() {
+        return acces;
+    }
+
+    public String getTelephone() {
+        return telephone;
+    }
+
+    public String getCourriel() {
+        return courriel;
+    }
+
+    public String getSiteinternet() {
+        return siteinternet;
+    }
+
+    public String getFacebook() {
+        return facebook;
+    }
 }

@@ -24,13 +24,15 @@ public class MainView extends JFrame{
 
     private ArrayList<JButton> buttons;
 
+    private JLabel info;
+
 
     public MainView(){
         creerFenetreMain();
         pack();
         setResizable(false);
         setTitle("Map");
-        setSize(1366, 768);
+        setSize(1366, 555);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
     //Initie les attributs dans les panels
@@ -48,9 +50,14 @@ public class MainView extends JFrame{
         for (int j = 0; j < nameCheckBoxes.length; j++)
         {
             checkBoxes[j] = new JCheckBox(nameCheckBoxes[j]);
+            checkBoxes[j].setPreferredSize(new Dimension(20, 50));
             panCheckBox.add(checkBoxes[j]);
         }
-        panInformations.add(new JLabel("Informations"));
+        info=new JLabel("Informations");
+        panInformations.setLayout(new BorderLayout());
+
+        panInformations.add(info);
+
     }
     //Creer les panels dans la fenetre
     public void creerFenetreMain(){
@@ -66,17 +73,23 @@ public class MainView extends JFrame{
             }
         };
         panCheckBox = new JPanel();
-        panCheckBox.setLayout(new GridLayout(10,3));
+        GridLayout gg=new GridLayout(3,5);
+        panCheckBox.setLayout(gg);
+        gg.setHgap(0);
+        gg.setVgap(0);
         panPrincipal = new JPanel();
         panPrincipal.setLayout(new BoxLayout(panPrincipal, BoxLayout.Y_AXIS));
         panInformations = new JPanel();
         panFond = new JPanel(new BorderLayout());
+        // panFond = new JPanel(new GridLayout(2,2));
 
-        carte.setPreferredSize( new Dimension( 381, 516 ) );
-        panFond.add(carte,BorderLayout.WEST);
-        panFond.add(panPrincipal,BorderLayout.CENTER);
-        panPrincipal.add(panCheckBox);
-        panPrincipal.add(panInformations);
+        carte.setPreferredSize(new Dimension(381, 516));
+        //panFond.add(carte);
+        panFond.add(carte, BorderLayout.WEST);
+        //panFond.add(panPrincipal);
+        panFond.add(panPrincipal, BorderLayout.CENTER);
+        panPrincipal.add(panCheckBox,BorderLayout.NORTH);
+        panPrincipal.add(panInformations,BorderLayout.SOUTH);
         setContentPane(panFond);
     }
 
@@ -177,6 +190,9 @@ public class MainView extends JFrame{
     }
     public ArrayList<JButton> getButtons() {
         return buttons;
+    }
+    public JLabel getInfo() {
+        return info;
     }
 
 }
