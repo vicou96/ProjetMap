@@ -4,6 +4,7 @@ import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -104,8 +105,8 @@ public class MainView extends JFrame{
         panelSearch.setLayout(new BoxLayout(panelSearch,BoxLayout.X_AXIS));
 
 
-        myList = new JList<String>(data);
-        myList1 = new JList<String>(data);
+        myList = new JList<String>();
+        myList1 = new JList<String>();
 
         labTextField = new JLabel("Rechercher par nom");
         textField = new JTextField();
@@ -210,6 +211,9 @@ public class MainView extends JFrame{
 
     public void setActionListener(ActionListener listener, JCheckBox check){
         check.addActionListener(listener);
+    }
+    public void setListListener(MouseListener listener, JList list){
+        list.addMouseListener(listener);
     }
 
     public ArrayList<JButton> getButtons() {
