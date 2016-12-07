@@ -26,7 +26,6 @@ public class MainController implements ActionListener
         view.initAttribut(model.getEdifices().keySet());
         initListenerCheckBoxes();
         view.getCarte().setLayout(null);
-
     }
     /*public void initCommunnes(){
         for(String commune)
@@ -56,13 +55,13 @@ public class MainController implements ActionListener
                     //TODO Recuperer informations et les afficher dans le panel
                     if (toSearch[1].equals("musee")){
                         Musee tmpmusee= (Musee) pt;
-                        String info= "<html>Informations<br>"+tmpmusee.getNom()+", Code Insee: "+tmpmusee.getINSEE()+" <br>Latitude: " + tmpmusee.getLattitude()+" Longitude: "+tmpmusee.getLongitude()+" Adresse: "+tmpmusee.getAdresse()+" "+tmpmusee.getCommune()+" "+tmpmusee.getCodepostal()+"<br>Accès: "+tmpmusee.getAcces()+
+                        String info= "<html>Informations<br>"+tmpmusee.getDesignation()+", Code Insee: "+tmpmusee.getINSEE()+" <br>Latitude: " + tmpmusee.getLattitude()+" Longitude: "+tmpmusee.getLongitude()+" Adresse: "+tmpmusee.getAdresse()+" "+tmpmusee.getCommune()+" "+tmpmusee.getCodepostal()+"<br>Accès: "+tmpmusee.getAcces()+
                                 "<br>Courriel: "+tmpmusee.getCourriel()+"<br>Facebook: "+tmpmusee.getFacebook()+"<br>Site internet: "+tmpmusee.getSiteinternet()+"<br>Téléphone: "+tmpmusee.getTelephone()+"<br><br>"+tmpmusee.getDescription()+"</html>";
                         view.getInfo().setText(info);
                     }
                     else {
                         MonumentHistorique tmpMonument=(MonumentHistorique) pt;
-                        String info= "<html>Informations<br>"+"Désignation: "+tmpMonument.getDesignation()+", Code Insee: "+tmpMonument.getINSEE()+" <br>Latitude: " + tmpMonument.getLattitude()+" Longitude: "+tmpMonument.getLongitude()+" Adresse: "+tmpMonument.getCommune()+" "+
+                        String info= "<html>Informations<br>"+tmpMonument.getDesignation()+", Code Insee: "+tmpMonument.getINSEE()+" <br>Latitude: " + tmpMonument.getLattitude()+" Longitude: "+tmpMonument.getLongitude()+" Adresse: "+tmpMonument.getCommune()+" "+
                                 tmpMonument.getDepartement()+"<br>Époque: "+tmpMonument.getSiecle()+" (Protégée le "+tmpMonument.getDateProtection()+") "+(tmpMonument.getAuteur().equals("")?"": "<br>Auteur(s): "+tmpMonument.getAuteur())+"<br>Propriétaire: "+tmpMonument.getProprietaire()+"<br>Référence: "+tmpMonument.getReference()+"<br><br>"+tmpMonument.getDescription()+"</html>";
                         view.getInfo().setText(info);
                     }

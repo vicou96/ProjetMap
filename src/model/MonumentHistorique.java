@@ -9,7 +9,6 @@ public class MonumentHistorique extends PointInteret
     private String Auteur;
     private String siecle;
     private String categorie;
-    private String designation;
     private String proprietaire;
     private String departement;
 
@@ -53,9 +52,6 @@ public class MonumentHistorique extends PointInteret
         return categorie;
     }
 
-    public String getDesignation() {
-        return designation;
-    }
     public String getDepartement() {
         return departement;
     }

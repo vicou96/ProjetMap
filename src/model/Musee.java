@@ -14,7 +14,7 @@ public class Musee extends PointInteret {
     private int codepostal;
 
     public Musee(String[] data) {
-        this.nom = data[0];
+        this.designation = data[0];
         this.adresse = data[1];
         this.codepostal= Integer.parseInt(data[2]);
         this.commune = data[3];

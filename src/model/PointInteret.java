@@ -10,6 +10,8 @@ public class PointInteret
     protected String commune;
     protected String description;
     protected String INSEE;
+
+    protected String designation;
     public PointInteret(){}
 
     public double getLattitude() {
@@ -31,6 +33,9 @@ public class PointInteret
 
     public String getINSEE() {
         return INSEE;
+    }
+    public String getDesignation() {
+        return designation;
     }
 
 }
