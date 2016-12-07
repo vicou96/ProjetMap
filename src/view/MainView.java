@@ -24,7 +24,7 @@ public class MainView extends JFrame{
 
     private ArrayList<JButton> buttons;
 
-    private JLabel info;
+    private JTextPane info;
 
 
     public MainView(){
@@ -32,7 +32,7 @@ public class MainView extends JFrame{
         pack();
         setResizable(false);
         setTitle("Map");
-        setSize(1366, 555);
+        setSize(1366, 768);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
     //Initie les attributs dans les panels
@@ -53,9 +53,11 @@ public class MainView extends JFrame{
             checkBoxes[j].setPreferredSize(new Dimension(20, 50));
             panCheckBox.add(checkBoxes[j]);
         }
-        info=new JLabel("Informations");
+        info=new JTextPane();
+        info.setContentType("text/html");
+        info.setBackground(null);
+        info.setEditable(false);
         panInformations.setLayout(new BorderLayout());
-
         panInformations.add(info);
 
     }
@@ -73,23 +75,20 @@ public class MainView extends JFrame{
             }
         };
         panCheckBox = new JPanel();
-        GridLayout gg=new GridLayout(3,5);
+        GridLayout gg=new GridLayout(4,6);
         panCheckBox.setLayout(gg);
-        gg.setHgap(0);
-        gg.setVgap(0);
         panPrincipal = new JPanel();
         panPrincipal.setLayout(new BoxLayout(panPrincipal, BoxLayout.Y_AXIS));
         panInformations = new JPanel();
         panFond = new JPanel(new BorderLayout());
-        // panFond = new JPanel(new GridLayout(2,2));
-
         carte.setPreferredSize(new Dimension(381, 516));
+        //panFond.setPreferredSize(new Dimension(1200, 510));
         //panFond.add(carte);
         panFond.add(carte, BorderLayout.WEST);
         //panFond.add(panPrincipal);
         panFond.add(panPrincipal, BorderLayout.CENTER);
-        panPrincipal.add(panCheckBox,BorderLayout.NORTH);
-        panPrincipal.add(panInformations,BorderLayout.SOUTH);
+        panPrincipal.add(panCheckBox);
+        panPrincipal.add(panInformations);
         setContentPane(panFond);
     }
 
@@ -191,7 +190,7 @@ public class MainView extends JFrame{
     public ArrayList<JButton> getButtons() {
         return buttons;
     }
-    public JLabel getInfo() {
+    public JTextPane getInfo() {
         return info;
     }
 
