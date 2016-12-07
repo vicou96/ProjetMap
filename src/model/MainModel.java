@@ -15,6 +15,7 @@ public class MainModel {
 
 
 
+
     private ArrayList<String> villes;
 
     CvsReader reader;
@@ -75,6 +76,13 @@ public class MainModel {
     }
     public ArrayList<String> getVilles() {
         return villes;
+    }
+    public String[] getVillesArray(){
+        String[] villetmp = new String[villes.size()];
+        for (int i=0;i<villes.size();i++){
+            villetmp[i]=villes.get(i);
+        }
+        return villetmp;
     }
     public List<PointInteret> searchByName(String search){
         ArrayList list=new ArrayList();

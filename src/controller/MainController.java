@@ -26,10 +26,15 @@ public class MainController implements ActionListener
         view.initAttribut(model.getEdifices().keySet());
         initListenerCheckBoxes();
         view.getCarte().setLayout(null);
+        initVilles();
     }
     /*public void initCommunnes(){
         for(String commune)
     }*/
+    public void initVilles(){
+
+        view.getMyList().setListData(model.getVillesArray());
+    }
     public void initListenerCheckBoxes(){
         for (JCheckBox check :view.getCheckBoxes()) {
             view.setActionListener(this,check);
