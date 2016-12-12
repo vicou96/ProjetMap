@@ -7,7 +7,8 @@ import java.util.List;
 /**
  * Created by Victor on 30/11/2016.
  */
-public class CvsReader {
+public class CsvReader
+{
     public static String getResourcePath(String fileName) {
         final File f = new File("");
         final String dossierPath = f.getAbsolutePath() + File.separator + fileName;
