@@ -116,11 +116,19 @@ public class MainView extends JFrame{
         panelSearch.add(textField);
         panelSearch.add(btnValiderSearch);
 
-        panelListes.add(myList);
-        panelListes.add(myList1);
-        myList.setPreferredSize(new Dimension(500,200));
-        myList1.setPreferredSize(new Dimension(500,200));
+        JScrollPane scrollPane = new JScrollPane();
+        JScrollPane scrollPane1 = new JScrollPane();
+        panelListes.add(scrollPane);
+        panelListes.add(scrollPane1);
+
+
+        scrollPane.setPreferredSize(new Dimension(500,200));
+        scrollPane1.setPreferredSize(new Dimension(500,200));
+       /* myList.setPreferredSize(new Dimension(500,200));
+        myList1.setPreferredSize(new Dimension(500,200));*/
         panelListes.setPreferredSize(new Dimension(1000,200));
+        scrollPane.setViewportView(myList);
+        scrollPane1.setViewportView(myList1);
 
         panVilles.add(panelListes);
         panVilles.add(panelSearch);

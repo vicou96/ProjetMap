@@ -23,6 +23,7 @@ public class checkBoxController implements ActionListener
     private String lastinfo;
 
     public checkBoxController(MainModel model, MainView view){
+        this.lastinfo ="";
         this.model = model;
         this.view = view;
         view.initAttribut(model.getEdifices().keySet());
