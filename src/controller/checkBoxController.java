@@ -30,10 +30,8 @@ public class checkBoxController implements ActionListener
         initListenerCheckBoxes();
         view.getCarte().setLayout(null);
         initVilles();
+        view.getInfo().setText("Informations");
     }
-    /*public void initCommunnes(){
-        for(String commune)
-    }*/
     public void initVilles(){
 
         view.getMyList().setListData(model.getVillesArray());
@@ -42,6 +40,11 @@ public class checkBoxController implements ActionListener
         for (JCheckBox check :view.getCheckBoxes()) {
             view.setActionListener(this,check);
         }
+        view.getPanButton().add(view.getBtnDeselect());
+        view.getPanButton().add(view.getBtnSelectAll());
+        view.getBtnDeselect().addActionListener(this);
+        view.getBtnSelectAll().addActionListener(this);
+
     }
     @Override
     public void actionPerformed(ActionEvent e)
@@ -57,9 +60,29 @@ public class checkBoxController implements ActionListener
         }
         else {
             JButton jb=(JButton)e.getSource();
-            displayInfo(jb);
+            if (jb.getText().equals("Tout déselectionner")){
+                for (JCheckBox j : view.getCheckBoxes()) {
+                    j.setSelected(false);
+                }
+                for(JButton pt:view.getButtons()){
+                    view.getCarte().remove(pt);
+                }
+                view.getButtons().removeAll(view.getButtons());
+                view.getInfo().setText("Informations");
+                view.repaint();
+            }
+            else if (jb.getText().equals("Sélectionner tout")){
+                for (JCheckBox j : view.getCheckBoxes()) {
+                    if (!j.isSelected()){
+                        j.setSelected(true);
+                        getPointToDisplay(j.getText());
+                    }
+                }
+            }
+            else {
+                displayInfo(jb);
+            }
         }
-
     }
 
     private void supprimerPoints(String text) {

@@ -1,10 +1,11 @@
 package view;
 
+import controller.checkBoxController;
+import controller.controllerCity;
+
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionListener;
-import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -39,6 +40,18 @@ public class MainView extends JFrame{
     private JLabel labTextField;
 
     private JButton btnValiderSearch;
+
+    private JButton btnDeselect;
+
+    private JButton btnSelectAll;
+
+    private JButton btnShiftAllLeft;
+
+    private JButton btnShiftAllRight;
+
+    private JPanel panCategories;
+
+    private JPanel panButton;
 
     public MainView(){
         creerFenetreMain();
@@ -98,6 +111,8 @@ public class MainView extends JFrame{
         //Panel villes pour les trier par viles
         panVilles = new JPanel();
         panVilles.setLayout(new BoxLayout(panVilles,BoxLayout.Y_AXIS));
+        JPanel panButtonShift=new JPanel();
+
 
         panelListes = new JPanel();
         panelListes.setLayout(new BoxLayout(panelListes,BoxLayout.X_AXIS));
@@ -108,9 +123,14 @@ public class MainView extends JFrame{
         myList = new JList<String>();
         myList1 = new JList<String>();
 
+        btnShiftAllLeft=new JButton("<<");
+        btnShiftAllRight=new JButton(">>");
+
         labTextField = new JLabel("Rechercher par nom");
         textField = new JTextField();
         btnValiderSearch = new JButton("Chercher");
+        btnDeselect = new JButton("Tout déselectionner");
+        btnSelectAll=new JButton("Sélectionner tout");
 
         panelSearch.add(labTextField);
         panelSearch.add(textField);
@@ -131,11 +151,19 @@ public class MainView extends JFrame{
         scrollPane1.setViewportView(myList1);
 
         panVilles.add(panelListes);
+        panButtonShift.add(btnShiftAllRight);
+        panButtonShift.add(btnShiftAllLeft);
+        panVilles.add(panButtonShift);
         panVilles.add(panelSearch);
 
         //Panel des onglets
+        panCategories=new JPanel();
+        panButton=new JPanel();
+        panCategories.setLayout(new BoxLayout(panCategories,BoxLayout.Y_AXIS));
+        panCategories.add(panCheckBox);
+        panCategories.add(panButton);
         panTab = new JTabbedPane();
-        panTab.addTab("Catégories",panCheckBox);
+        panTab.addTab("Catégories",panCategories);
         panTab.addTab("Trier par villes",panVilles);
 
         //Panel principal : informations holder (panel des onglets + panel texte)
@@ -217,11 +245,13 @@ public class MainView extends JFrame{
         return imageFR;
     }
 
-    public void setActionListener(ActionListener listener, JCheckBox check){
+    public void setActionListener(checkBoxController listener, JCheckBox check){
         check.addActionListener(listener);
     }
-    public void setListListener(MouseListener listener, JList list){
+    public void setListListener(controllerCity listener, JList list){
         list.addMouseListener(listener);
+        btnShiftAllLeft.addActionListener(listener);
+        btnShiftAllRight.addActionListener(listener);
     }
 
     public ArrayList<JButton> getButtons() {
@@ -345,5 +375,27 @@ public class MainView extends JFrame{
     public void setBtnValiderSearch(JButton btnValiderSearch)
     {
         this.btnValiderSearch = btnValiderSearch;
+    }
+    public JButton getBtnDeselect() {
+        return btnDeselect;
+    }
+
+    public JPanel getPanCategories() {
+        return panCategories;
+    }
+
+    public JPanel getPanButton() {
+        return panButton;
+    }
+
+    public JButton getBtnShiftAllLeft() {
+        return btnShiftAllLeft;
+    }
+
+    public JButton getBtnShiftAllRight() {
+        return btnShiftAllRight;
+    }
+    public JButton getBtnSelectAll() {
+        return btnSelectAll;
     }
 }

@@ -4,6 +4,8 @@ import model.MainModel;
 import view.MainView;
 
 import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
@@ -12,7 +14,7 @@ import java.util.Collections;
 /**
  * Created by Victor on 07/12/2016.
  */
-public class controllerCity implements MouseListener {
+public class controllerCity implements MouseListener,ActionListener {
     private MainView view;
     private MainModel model;
 
@@ -24,36 +26,29 @@ public class controllerCity implements MouseListener {
     }
     @Override
     public void mouseClicked(MouseEvent e) {
-        if (e.getClickCount() == 2) {
+        if (e.getSource().getClass()==JList.class){
+            if (e.getClickCount() == 2) {
 
-            JList list= (JList) e.getSource();
-            String selectedItem = (String) list.getSelectedValue();
-            String[] m1;
-            String[] m2;
-            if (list.equals(view.getMyList())){
-                m1=  getStringTabFromJlistPlusAddElement(view.getMyList1(),selectedItem);
-                m2=removeFromJlist(view.getMyList(),selectedItem);
-                view.getMyList1().setListData(m1);
-                view.getMyList().setListData(m2);
+                JList list= (JList) e.getSource();
+                String selectedItem = (String) list.getSelectedValue();
+                String[] m1;
+                String[] m2;
+                if (list.equals(view.getMyList())){
+                    m1=  getStringTabFromJlistPlusAddElement(view.getMyList1(),selectedItem);
+                    m2=removeFromJlist(view.getMyList(),selectedItem);
+                    view.getMyList1().setListData(m1);
+                    view.getMyList().setListData(m2);
+                }
+                else {
+                    m1=getStringTabFromJlistPlusAddAlementPlusSort(view.getMyList(),selectedItem);
+                    m2=removeFromJlist(view.getMyList1(),selectedItem);
+                    view.getMyList().setListData(m1);
+                    view.getMyList1().setListData(m2);
+                }
+                deselectCheck();
             }
-            else {
-                m1=getStringTabFromJlistPlusAddAlementPlusSort(view.getMyList(),selectedItem);
-                m2=removeFromJlist(view.getMyList1(),selectedItem);
-                view.getMyList().setListData(m1);
-                view.getMyList1().setListData(m2);
-            }
-            for (JCheckBox j : view.getCheckBoxes()) {
-                j.setSelected(false);
-            }
-            for(JButton pt:view.getButtons()){
-                view.getCarte().remove(pt);
-            }
-            view.getButtons().removeAll(view.getButtons());
-            view.getInfo().setText("Informations");
-            view.repaint();
-            System.out.println(view.getButtons().size());
-
         }
+
 
     }
 
@@ -76,7 +71,18 @@ public class controllerCity implements MouseListener {
     public void mouseExited(MouseEvent e) {
 
     }
+    public void deselectCheck(){
+        for (JCheckBox j : view.getCheckBoxes()) {
+            j.setSelected(false);
+        }
+        for(JButton pt:view.getButtons()){
+            view.getCarte().remove(pt);
+        }
+        view.getButtons().removeAll(view.getButtons());
+        view.getInfo().setText("Informations");
+        view.repaint();
 
+    }
     public String[] getStringTabFromJlistPlusAddElement(JList list,String element){
         String [] st=new String[list.getModel().getSize()];
         for (int i = 0; i < list.getModel().getSize(); i++) {
@@ -130,5 +136,29 @@ public class controllerCity implements MouseListener {
             j++;
         }
         return tmp;
+    }
+    public void switchAll(JList from,JList to){
+        ArrayList<String> toStr=new ArrayList<>();
+        for (int i = 0; i < to.getModel().getSize(); i++) {
+            toStr.add((String) to.getModel().getElementAt(i));
+        }
+        for (int i = 0; i < from.getModel().getSize(); i++) {
+            toStr.add((String) from.getModel().getElementAt(i));
+        }
+        Collections.sort(toStr);
+        String[] st= (String[]) toStr.toArray(new String[0]);
+        to.setListData(st);
+        from.setListData(new String[0]);
+        deselectCheck();
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        if (e.getSource().equals(view.getBtnShiftAllLeft())){
+            switchAll(view.getMyList1(),view.getMyList());
+        }
+        else{
+            switchAll(view.getMyList(),view.getMyList1());
+        }
     }
 }

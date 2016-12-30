@@ -32,10 +32,11 @@ public class MainModel {
             if(edifices.containsKey(monumentHistoriquetmp.getCategorie())){
                 edifices.get(monumentHistoriquetmp.getCategorie()).add(monumentHistoriquetmp);
             }
-            else {
+            else if(!monumentHistoriquetmp.getCategorie().equals(" site archéologique")){
                 ArrayList<PointInteret> tmpArray=new ArrayList<>();
                 tmpArray.add(monumentHistoriquetmp);
                 edifices.put(monumentHistoriquetmp.getCategorie(),tmpArray);
+                System.out.println();
             }
         }
 
@@ -59,12 +60,7 @@ public class MainModel {
     public void initPicto(Set<String> picto){
         for(String str:picto){
             try {
-                if (str.equals(" site archéologique")){
-                    pictoImages.put(str,ImageIO.read(new File("pictogrammes/site archéologique.png")));
-                }
-                else {
-                    pictoImages.put(str, ImageIO.read(new File("pictogrammes/" + str + ".png")));
-                }
+                pictoImages.put(str, ImageIO.read(new File("pictogrammes/" + str + ".png")));
             } catch (IOException e) {
                 e.printStackTrace();
                 System.out.println(str);
