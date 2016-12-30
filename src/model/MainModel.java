@@ -18,12 +18,12 @@ public class MainModel {
 
     private ArrayList<String> villes;
 
-    CvsReader reader;
+    CsvReader reader;
     public MainModel() {
         HashSet<String> villestmp=new HashSet<>();
         edifices= new HashMap<>();
         pictoImages= new HashMap<>();
-        reader=new CvsReader();
+        reader=new CsvReader();
         ArrayList<String[]> tmp=reader.readFileSeparatedvalues("MonumentsHistoriquesFrancheComte.csv");
         tmp.remove(0);
         for (String[] str:tmp) {
